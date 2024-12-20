@@ -1,4 +1,4 @@
-name: spi-form-ui-prod 
+name: spi-form-ui-model 
 
 on:
   push:
@@ -21,25 +21,25 @@ jobs:
     - name: Install Dependencies
       run: npm i --force
 
-    - name: Build - spi-form-ui-prod
+    - name: Build - spi-form-ui-model
       run: |
            export CI=false
            npm run build
 
-    - name: Delete Existing S3 Objects - spi-form-ui-prod
+    - name: Delete Existing S3 Objects - spi-form-ui-model
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
-        SPI_FORM_UI_S3_BUCKET_PROD: ${{ secrets.SPI_FORM_UI_S3_BUCKET_PROD }}
+        SPI_FORM_UI_S3_BUCKET_MODEL: ${{ secrets.SPI_FORM_UI_S3_BUCKET_MODEL }}
       run: |
-        aws s3 rm s3://$SPI_FORM_UI_S3_BUCKET_PROD --recursive --region $AWS_REGION
+        aws s3 rm s3://$SPI_FORM_UI_S3_BUCKET_MODEL --recursive --region $AWS_REGION
 
-    - name: Deploy to S3 - spi-form-ui-prod
+    - name: Deploy to S3 - spi-form-ui-model
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
-        SPI_FORM_UI_S3_BUCKET_PROD: ${{ secrets.SPI_FORM_UI_S3_BUCKET_PROD }}
+        SPI_FORM_UI_S3_BUCKET_MODEL: ${{ secrets.SPI_FORM_UI_S3_BUCKET_MODEL }}
       run: |
-        aws s3 sync build/ s3://$SPI_FORM_UI_S3_BUCKET_PROD --region $AWS_REGION --acl public-read
+        aws s3 sync build/ s3://$SPI_FORM_UI_S3_BUCKET_MODEL --region $AWS_REGION --acl public-read
