@@ -1,0 +1,41 @@
+@media screen and (max-width: 700px) {
+  .next-btn-by-jav {
+    bottom: 40px !important;
+  }
+}
+@keyframes fadeInScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes iconBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.languageText {
+  font-size: 1rem; /* Default for small screens */
+
+  @media (min-width: 468px) {
+    font-size: 1rem; /* Small screen */
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 2.5rem; /* Medium screen */
+  }
+  @media (min-width: 1200px) {
+    font-size: 3.5rem; /* Large screen */
+  }
+}
